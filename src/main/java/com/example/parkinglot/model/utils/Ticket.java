@@ -8,16 +8,14 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"parkingSpot.vehicle"})
 public class Ticket {
     private int entryTime;
-    private Vehicle vehicle;
     private ParkingSpot parkingSpot;
 
     private Ticket(int entryTime,Vehicle vehicle, ParkingSpot parkingSpot){
         this.entryTime = entryTime;
         this.parkingSpot = parkingSpot;
-        this.vehicle = vehicle;
     }
 
     public static Ticket generateTicket(int entryTime,Vehicle vehicle, ParkingSpot parkingSpot){

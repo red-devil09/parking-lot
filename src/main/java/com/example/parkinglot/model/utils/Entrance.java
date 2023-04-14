@@ -27,6 +27,7 @@ public class Entrance {
 
     private Ticket generateTicket(Vehicle v,ParkingSpot p){
         Ticket t = Ticket.generateTicket(LocalTime.now().getNano(), v,p);
+        //yaha jo debug ke time stack overflow error aa rha tha, vo tha due to nested ToStringCalss
         v.setTicket(t);
         return t;
     }

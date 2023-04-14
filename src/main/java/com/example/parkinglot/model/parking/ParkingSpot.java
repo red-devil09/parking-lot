@@ -8,7 +8,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"vehicle.ticket", "ticket.parkingSpot"})
 public abstract class ParkingSpot {
      String id;
      Boolean isFree;
