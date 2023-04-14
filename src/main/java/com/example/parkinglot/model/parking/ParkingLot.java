@@ -29,9 +29,10 @@ public abstract class ParkingLot {
     }
 
     public void removeVehicle(ParkingSpot parkingSpot){
+        int parkedAtThis = parkingSpot.getVehicle().getNumber();
         parkingSpot.freeSpot();
         usedParkingSpots.remove(parkingSpot.getId());
-        System.out.println("Vehicle " + parkingSpot.getVehicle() + " removed from  " + parkingSpot);
+        System.out.println("Vehicle " + parkedAtThis + " removed from  " + parkingSpot);
 
     }
 }

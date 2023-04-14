@@ -1,6 +1,9 @@
 package com.example.parkinglot;
 
 import com.example.parkinglot.model.parking.*;
+import com.example.parkinglot.model.utils.Entrance;
+import com.example.parkinglot.model.utils.ExitGate;
+import com.example.parkinglot.model.utils.Ticket;
 import com.example.parkinglot.model.vehicle.Bike;
 import com.example.parkinglot.model.vehicle.Car;
 import com.example.parkinglot.model.vehicle.Vehicle;
@@ -17,6 +20,8 @@ public class ParkingLotApplication {
 		//SpringApplication.run(ParkingLotApplication.class, args);
 
 		createParkingLot(10,15);
+		Entrance entrance = new Entrance();
+		ExitGate exitGate = new ExitGate();
 
 		Vehicle bike = new Bike(8873);
 		Vehicle car = new Car(4472);
@@ -25,11 +30,16 @@ public class ParkingLotApplication {
 
 		List<Vehicle> vehicle = List.of(bike,car,bike2,car2);
 
+
 		for(var i:vehicle){
-			ParkingLot parkingLot = ParkingLotFactory.getParkingLot(i);
-			ParkingSpot parkingSpot = parkingLot.findParkingSpot();
-			parkingLot.parkVehicle(i,parkingSpot);
-			System.out.println(" done ");
+			ParkingSpot parkingSpot = entrance.findParkingSpace(i);
+			entrance.bookSpot(i,parkingSpot);
+
+		}
+
+		for(var i:vehicle){
+			int price = exitGate.removeVehicle(i);
+			System.out.println(" ticket " + i + " has been charged " + price);
 		}
 
 		System.out.println("basic function done");
